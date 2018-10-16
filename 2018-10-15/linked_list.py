@@ -101,10 +101,10 @@ def is_sorted(front):
     return True
 
 
-# Problem 1
+# Problem 1: Insertion Sort
 # --------------------------------------------------
-# Given the first node of a doubly linked list, sort the list using insertion
-# sort [1]. Here's a quick explanation of insertion sort. Starting at the front
+# Given the first node of a doubly linked list, sort the list using [insertion
+# sort][1]. Here's a quick explanation of insertion sort. Starting at the front
 # of the list, for each node, move the node backwards in the list until the
 # value in the previous node is less than or equal to the value in the current
 # node.
@@ -175,10 +175,13 @@ def test_insertion_sort():
         l = linked_list(*vals)
         l = insertion_sort(l)
         assert is_sorted(l)
-        assert len(l) == size
+        if size == 0:
+            assert l is None
+        else:
+            assert len(l) == size
 
 
-# Problem 2
+# Problem 2: Merge
 # --------------------------------------------------
 # Given the first nodes of two sorted doubly linked lists, merge them into one.
 # In the case of equal values, the values from the first list should come
@@ -258,3 +261,62 @@ def test_merge():
                 assert merged == None
             else:
                 assert len(merged) == left_size + right_size
+
+
+# Bonus: Merge Sort
+# --------------------------------------------------
+# Conceptually, a [merge sort][3] works as follows:
+#
+# 1. Divide the unsorted list into n sublists, each containing 1 element
+#    (a list of 1 element is considered sorted).
+# 2. Repeatedly merge adjacent sublists to produce new sorted sublists until
+#    there is only 1 sublist remaining. This will be the sorted list.
+#
+# See [this graphic][4] for a visual explanation.
+#
+# Hint: There are two ways to implement merge sort. The "top-down" approach is
+# recursive; the "bottom-up" approach is iterative. In our case, the top-down
+# algorithm is way easier. But if our lists wrapped around, then the bottom-up
+# algorithm would be feasible. By "wrap around" I mean that the `prev` pointer
+# of the first node points to the last node, and the `next` pointer of the last
+# node points to the first node.
+#
+# [3]: https://en.wikipedia.org/wiki/Merge_sort
+# [4]: https://en.wikipedia.org/wiki/Merge_sort#/media/File:Merge-sort-example-300px.gif
+
+def merge_sort(front):
+    # Edge case for an empty list.
+    if front is None:
+        return None
+
+    # If the length is 1, the list is already sorted.
+    n = len(front)
+    if n == 1:
+        return front
+
+    # Cut the list at the mid point.
+    mid = front
+    for _ in range(n//2):
+        mid = mid.next
+    mid.prev.next = None
+    mid.prev = None
+
+    # Recursivly sort the two halves.
+    left = merge_sort(front)
+    right = merge_sort(mid)
+
+    # Merge both sides together.
+    return merge(left, right)
+
+
+def test_merge_sort():
+    import random
+    for size in range(255):
+        vals = [random.randint(0, 10) for _ in range(size)]
+        l = linked_list(*vals)
+        l = merge_sort(l)
+        assert is_sorted(l)
+        if size == 0:
+            assert l is None
+        else:
+            assert len(l) == size
