@@ -1,4 +1,4 @@
-# CS Interview Prep @ UGA - Problem Archive
+# CSIP @ UGA - Problem Archive
 
 This is the archive of interview prep problems and sample solutions discussed by the CSIP club at the University of Georgia.
 
