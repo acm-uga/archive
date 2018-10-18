@@ -1,5 +1,5 @@
 ---
-title: "#3: Fun with Linked Lists"
+title: "#3: Sorting Linked Lists"
 date: 2018-10-15
 ---
 
