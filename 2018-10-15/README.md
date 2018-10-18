@@ -1,5 +1,5 @@
 ---
-title: "#3: Sorting Linked Lists"
+title: "Sorting Linked Lists"
 date: 2018-10-15
 ---
 

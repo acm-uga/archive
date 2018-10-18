@@ -1,5 +1,5 @@
 ---
-title: "#2: With and Without Parens"
+title: "With and Without Parens"
 date: 2018-10-08
 ---
 
