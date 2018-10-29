@@ -1,5 +1,5 @@
 ---
-# Problem 1: "Rotate Matrix"
+title: "Rotate Matrix"
 date: 2018-10-29
 ---
 
