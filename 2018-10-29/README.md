@@ -32,6 +32,8 @@ Input:
 
 ## Hint
 
+An image can only be rotated in place if it is square.
+
 There are many ways to solve this problem but matrix manipulation techniques from Linear Algebra are very helpful to know!
 
 
