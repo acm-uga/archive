@@ -4,6 +4,7 @@
 # https://www.scipy.org/
 import numpy as np
 
+
 def rotate(im):
     '''Rotate an image by 90 degrees clockwise.
 
@@ -18,7 +19,7 @@ def rotate(im):
     h, w = im.shape
     out = np.zeros(shape=(w, h))
 
-    # The formula from source index to rotated index is: ``(y, x) -> (x, h-y)``.
+    # The formula for the rotated index is: ``(y, x) -> (x, h-y-1)``.
     # Think of it this way: swapping ``(y, x) -> (x, y)`` transposes the image,
     # then ``(x, y) -> (x, h-y-1)`` reverses the rows.
     def rotate_coords(y, x):
@@ -32,7 +33,6 @@ def rotate(im):
             out[dst] = im[src]
 
     return out
-
 
 
 def rotate_inplace(im):
@@ -100,7 +100,7 @@ def rotate_inplace(im):
     h, w = im.shape
     assert h == w
 
-    # The formula from source index to rotated index is: ``(y, x) -> (x, h-y)``.
+    # The formula for the rotated index is: ``(y, x) -> (x, h-y-1)``.
     # Think of it this way: swapping ``(y, x) -> (x, y)`` transposes the image,
     # then ``(x, y) -> (x, h-y-1)`` reverses the rows.
     def rotate_coords(y, x):
