@@ -5,12 +5,7 @@ date: 2018-11-12
 
 # P1: Stock Buy & Sell to Maximize Profit
 
-You are given an array that has the price of stocks each day.
-
-Each element is a positive integer but can include zero.
-
-For example,
-[100, 180, 260, 310, 40, 535, 695]
+You are given an array that has the price of stocks each day. Each element is a positive integer but can include zero. An example input could be `[100, 180, 260, 310, 40, 535, 695]`.
 
 You are only allowed to buy or sell stock each day. Find and return the maximum profit that you can make by buying and selling in those days.
 
