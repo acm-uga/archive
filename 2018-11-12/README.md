@@ -1,10 +1,9 @@
 ---
-title: "Stock Buy & Sell to Maximize Profit"
+title: "Stock Buy/Sell and Exact Change"
 date: 2018-11-12
 ---
-# Stock Buy & Sell to Maximize Profit
 
-## Formal Description
+# P1: Stock Buy & Sell to Maximize Profit
 
 You are given an array that has the price of stocks each day.
 
@@ -19,23 +18,42 @@ Remember that you must have bought stock before you can sell it!
 
 ## Examples
 
-### Example 1:
-**Input:** [7,1,5,3,6,4]
-**Output:** 5
-**Explanation:** 
-Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
-Not 7-1 = 6, as selling price needs to be larger than buying price.
+| Input            | Output |
+|------------------|--------|
+| `[7,1,5,3,6,4]`  | 5      |
+| `[7,6,4,3,1]`    | 0      |
 
-### Example 2:
-**Input:** [7,6,4,3,1]
-**Output:** 0
-**Explanation:** 
-In this case, no transaction is done, i.e. max profit = 0.
+For the first example, you buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5, **not** 7-1 = 6 because selling price needs to be larger than buying price.
+
+For the second example, no transaction is done, i.e. max profit = 0.
 
 
-## Solution
+# P2: Exact Change
+
+What is the fewest number of coins you need to make exact change of some amount?
+
+For this problem, lets assume that we have an infinite amount of coins in the denominations 1¢, 3¢, and 5¢. If we wanted to form 14¢ of change, we would need four coins (one 1¢, one 3¢, and two 5¢). Your goal is to write an algorithm that will take some value and return the minimum number of coins in these three denominations needed to make value.
+
+You only need to give the total number of coins, not the amounts of each denomination.
+
+## Examples
+
+| Input | Output                           |
+|-------|----------------------------------|
+| 14    | 4 coins (one 1¢, one 3¢, two 5¢) |
+| 25    | 5 coins (five 5¢)                |
+| 107   | 23 coins (twenty-one 5¢, two 1¢) |
+
+## Hints
+
+Recursion is a good place to start with this problem. However, you may run into an exponential time complexity. Dynamic programming can cut that down to `O(n)`.
+
+## Bonus
+
+Return the number of coins broken down by denomination.
+
+# Solutions
 
 Per usual, [sample solutions][csip-uga/archive] are posted on GitHub.
 
 [csip-uga/archive]: https://github.com/csip-uga/archive
-
