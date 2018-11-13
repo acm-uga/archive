@@ -5,29 +5,27 @@ date: 2018-11-12
 
 # P1: Stock Buy & Sell to Maximize Profit
 
-You are given an array that has the price of stocks each day. Each element is a positive integer but can include zero. An example input could be `[100, 180, 260, 310, 40, 535, 695]`.
+You are given an array containing the forecasted price of a certain stock over several days. Each element is a non-negative integer giving the price of that stock in dollars for the associated day.
 
-You are only allowed to buy or sell stock each day. Find and return the maximum profit that you can make by buying and selling in those days.
+You trade the stock by picking one day to buy and one day to sell. Write a program to compute the profit of the best single trade you could make on those days.
 
 Remember that you must have bought stock before you can sell it!
 
 ## Examples
 
-| Input            | Output |
-|------------------|--------|
-| `[7,1,5,3,6,4]`  | 5      |
-| `[7,6,4,3,1]`    | 0      |
+| Input                | Output |
+|----------------------|--------|
+| `[7, 1, 5, 3, 6, 4]` | 5      |
+| `[7, 6, 4, 3, 1]`    | 0      |
 
-For the first example, you buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5, **not** 7-1 = 6 because selling price needs to be larger than buying price.
+For the first example, the best profit is $5 by buying on day 2 ($1) and selling on day 5 ($6). Time travel is not allowed. You cannot earn $6 by buying on day 2 ($1) and selling on day 1 ($7)
 
-For the second example, no transaction is done, i.e. max profit = 0.
+For the second example, no trade could ever earn a profit. The best you can do is to hold for a profit of 0.
 
 
 # P2: Exact Change
 
-What is the fewest number of coins you need to make exact change of some amount?
-
-For this problem, lets assume that we have an infinite amount of coins in the denominations 1¢, 4¢, and 5¢. If we wanted to form 13¢ of change, we would need three coins (two 4¢ and one 5¢). Your goal is to write an algorithm that will take some value and return the minimum number of coins in these three denominations needed to make value.
+You are given an amount of money and asked to make change, but you only have coins of denomination 1¢, 4¢, and 5¢. What is the fewest number of coins you could use to make exact change?
 
 You only need to give the total number of coins, not the amounts of each denomination.
 
@@ -47,6 +45,7 @@ Recursion is a good place to start with this problem. However, you may run into 
 ## Bonus
 
 Return the number of coins broken down by denomination.
+
 
 # Solutions
 
