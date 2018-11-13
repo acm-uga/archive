@@ -9,16 +9,16 @@ def change(amount):
 
     # Base cases.
     if amount == 0: return 0  # no coins
-    if amount == 1: return 1  # one 1¢
-    if amount == 2: return 2  # two 1¢
-    if amount == 3: return 1  # one 3¢
-    if amount == 4: return 2  # one 1¢, one 3¢
-    if amount == 5: return 1  # one 5¢
+    if amount == 1: return 1  # 1 * 1¢
+    if amount == 2: return 2  # 2 * 1¢
+    if amount == 3: return 3  # 3 * 1¢
+    if amount == 4: return 1  # 1 * 4¢
+    if amount == 5: return 1  # 1 * 5¢
 
-    # What's the solution for 1¢ less, 3¢ less, and 5¢ less?
+    # What's the solution for 1¢ less, 4¢ less, and 5¢ less?
     sub_solutions = [
         change(amount - 1),
-        change(amount - 3),
+        change(amount - 4),
         change(amount - 5),
     ]
 

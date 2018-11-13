@@ -27,17 +27,18 @@ For the second example, no transaction is done, i.e. max profit = 0.
 
 What is the fewest number of coins you need to make exact change of some amount?
 
-For this problem, lets assume that we have an infinite amount of coins in the denominations 1¢, 3¢, and 5¢. If we wanted to form 14¢ of change, we would need four coins (one 1¢, one 3¢, and two 5¢). Your goal is to write an algorithm that will take some value and return the minimum number of coins in these three denominations needed to make value.
+For this problem, lets assume that we have an infinite amount of coins in the denominations 1¢, 4¢, and 5¢. If we wanted to form 13¢ of change, we would need three coins (two 4¢ and one 5¢). Your goal is to write an algorithm that will take some value and return the minimum number of coins in these three denominations needed to make value.
 
 You only need to give the total number of coins, not the amounts of each denomination.
 
 ## Examples
 
-| Input | Output                           |
-|-------|----------------------------------|
-| 14    | 4 coins (one 1¢, one 3¢, two 5¢) |
-| 25    | 5 coins (five 5¢)                |
-| 107   | 23 coins (twenty-one 5¢, two 1¢) |
+| Input | Output                         |
+|-------|--------------------------------|
+| 8     | 2 coins (two 4¢)               |
+| 13    | 3 coins (two 4¢, one 5¢)       |
+| 25    | 5 coins (five 5¢)              |
+| 107   | 22 coins (nineteen 5¢, two 4¢) |
 
 ## Hints
 
