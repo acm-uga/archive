@@ -38,3 +38,10 @@ The naive solution to the longest 2-run above involves a nested loop with a wors
 But there's a better way! Using dynamic programming, we can solve any *m*-run problem in `O(n)`.
 
 Can you write a function that takes a string and *m* and returns the length of the longest *m*-run in `O(n)`?
+
+
+# Solutions
+
+As usual, [sample solutions][csip-uga/archive] are posted on GitHub.
+
+[csip-uga/archive]: https://github.com/csip-uga/archive
