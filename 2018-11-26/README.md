@@ -7,14 +7,16 @@ date: 2018-11-26
 
 This week, we're looking at variations on a substring searching problem that we'll call the Longest Run.
 
-We start by defining a __run__ as a contiguous substring containing exactly one unique character. The first problem this week is to find the length of the longest run in a string.
+We start by defining a __run__ as a contiguous substring containing at most one unique character. The first problem this week is to find the length of the longest run in a string.
 
 ## Example
 
-| Input                   | Output   | Explanation                  |
-|-------------------------|----------|------------------------------|
-| `"1222345"`             | 3        | The longest run is `222`.    |
-| `"abccbaabc"`           | 2        | Both `cc` and `aa` are runs. |
+| Input                   | Output   | Explanation                         |
+|-------------------------|----------|-------------------------------------|
+| `"1222345"`             | 3        | The longest run is `"222"`.         |
+| `"abccbaabc"`           | 2        | Both `"cc"` and `"aa"` are runs.    |
+| `"zzzzz"`               | 5        | The entire string is a run.         |
+| `""`                    | 0        | The entire (empty) string is a run. |
 
 
 # P2: Longest 2-Run
@@ -25,10 +27,12 @@ Let's define an __*m*-run__ as a contiguous substring containing up to *m* uniqu
 
 ## Example
 
-| Input                   | Output   | Explanation                        |
-|-------------------------|----------|------------------------------------|
-| `"abbcba"`              | 4        | The longest 2-run is `bbcb`.       |
-| `"121232345"`           | 4        | Both `1212` and `2323` are 2-runs. |
+| Input                   | Output   | Explanation                           |
+|-------------------------|----------|---------------------------------------|
+| `"abbcba"`              | 4        | The longest 2-run is `bbcb`.          |
+| `"121232345"`           | 4        | Both `1212` and `2323` are 2-runs.    |
+| `"zzzzz"`               | 5        | The entire string is a 2-run.         |
+| `""`                    | 0        | The entire (empty) string is a 2-run. |
 
 
 # Bonus: Longest *m*-Run
