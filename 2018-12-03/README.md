@@ -60,7 +60,7 @@ For languages with tuples, you may use a 3-tuple to represent nodes of a binary 
  8     12  25   16
 ```
 
-**Output:** 66
+**Output:** 106
 
 
 # P2: Trimming a Binary Search Tree
