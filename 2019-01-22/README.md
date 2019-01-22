@@ -92,7 +92,7 @@ The following rules have to be obeyed:
 - Only the most upper disk from one of the rods can be moved in a move
 - It can be put on another rod, if this rod is empty or if the most upper disk of this rod is larger than the one which is moved.
 
-
+![Towers of Hanoi](https://ka-perseus-images.s3.amazonaws.com/5b5fb2670c9a185b2666637461e40c805fcc9ea5.png)
 
 
 # Solutions
