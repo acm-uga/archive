@@ -30,60 +30,41 @@ def factorial(n):
     #Base case
     if n == 1:
         return 1
+    
     #Recursive function call
     else:
         return n * factorial(n-1)
 ```
 
-A tree is best described recursively as data structure composed of nodes that fulfill the following conditions:
+Simple right? Now let's visualize our factorial problem as a tree.
 
-- Each node contains a value or data.
+![Factorial Tree Representation](https://copingwithcomputers.files.wordpress.com/2013/11/factorialrecursion-e1384837049546.png)
 
-- Nodes are connected by edges.
+This is where recursion gets to be really interesting in CS - we can use it to traverse trees! Meaning we can use recursion to visit (checking and/or updating) each node in a tree data structure, exactly once. This opens up all sorts of possibilites for solving problems with trees! If you're hazy on how trees work, check out our [previous Tree lecture](https://csip-uga.github.io/problems/2018-12-03/README).
 
-- The first node of the tree is called the root node.
-
-- The root node has zero or more child nodes.
-
-- Each child node has zero or more child nodes, and so on...
+Now that you understand the basics of recursion, let's try our coding problems for this week!
 
 
+# P1: Height of a tree
 
+Given the root of a binary tree of integers, write an algorithm that will return the height of the tree. The height of a tree is the length of the longest path to a leaf.
+
+**Input**:
 ```
-
-      tree
-
-      ----
-
-       j    <-- root
-
+       2    <-- root
      /   \
-
-    f      k
-
+    7      5
   /   \      \
-
- a     h      z    <-- leaves
-
+ 2     6       9    
+     /   \     
+    5     11
 ```
+**Output**: 3
+The longest path would be 2, 7, 6, and either 5 or 11. This is three edges (or connections) between nodes which is the height of the tree.
 
 
 
-Other things to note:
-
-- A node is called a "leaf" node if it has no children.
-
-- A binary tree is a tree in which each node has up to two children but no more.
-
-- The height of a tree is the length of the longest path to a leaf.
-
-- The depth of a node is the length of the path to its root.
-
-
-
-
-
-# P1: Sum of a Tree
+# P2: Sum of a Tree
 
 
 
