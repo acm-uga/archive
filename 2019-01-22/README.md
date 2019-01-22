@@ -76,9 +76,8 @@ But don't be afraid, it's not very likely that they will finish their work anyti
 
 While a cool story, the legend and the game "Towers of Hanoi" was conceived by the French mathematician Edouard Lucas in 1883.
 
-
-
-So for our second problem this week, we will implement an algorithm for the Tower of Hanoi.
+---------------------------------------------------------------------------------------------------------------------------------
+So for our second problem this week, we will implement an algorithm for the Towers of Hanoi.
 
 The rules of the game are very simple, but the solution is not so obvious. The game uses three rods.
 
