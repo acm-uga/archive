@@ -5,7 +5,7 @@ date: 2019-01-22
 
 # An Introduction to Recursion
 
-"To understand recursion, one must first understand recursion."
+>"To understand recursion, one must first understand recursion."
 
 This week, we will be reviewing the topic of recursion. Recursion is a fundamental concept of Computer Science yet many people seem to struggle with this concept. Hopefully we will be able to clear things up!
 
