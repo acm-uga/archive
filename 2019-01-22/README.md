@@ -59,12 +59,12 @@ Given the root of a binary tree of integers, write an algorithm that will return
      /   \     
     5     11
 ```
-**Output**: 3
+**Output**: 3.
+
 The longest path would be 2, 7, 6, and either 5 or 11. This is three edges (or connections) between nodes which is the height of the tree.
 
 
-
-# P2: Sum of a Tree
+# P2:
 
 
 
@@ -75,38 +75,7 @@ Given the root of a binary tree, write an algorithm that will compute the sum of
 You can assume that each node has the following definition:
 
 
-
-```
-
-Tree {
-
-    data: int;
-
-    left: Tree;
-
-    right: Tree;
-
-}
-
-```
-
-
-
-The `left` and/or `right` subtree may be null.
-
-
-
-For languages with tuples, you may use a 3-tuple to represent nodes of a binary tree, e.g. `(data, left, right)`.
-
-
-
-## Example
-
-
-
-**Input**:
-
-```
-
-        15
+# Solutions
+As usual, [sample solutions][csip-uga/archive] are posted on GitHub.
+[csip-uga/archive]: https://github.com/csip-uga/archive
 
