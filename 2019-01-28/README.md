@@ -27,7 +27,8 @@ You may assume that each input would have exactly one solution, and you may not 
 [0,1]
 ```
 
-# P2: Combination Sum
+# P2: Combination Sum:
+
 Similar to the previous question, you are given an array of integers and a target number. Find all unique combinations in the array in which integers sum to target.
 
 The same repeated number may be chosen from the array an unlimited number of times.
@@ -38,6 +39,7 @@ The same repeated number may be chosen from the array an unlimited number of tim
 ```
 
 **Output**
+
 A solution set is:
 ```
 [
