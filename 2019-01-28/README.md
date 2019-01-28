@@ -11,8 +11,38 @@ An array is defined as a collection of items stored at contiguous memory locatio
 
 ![Array Representation](https://cdncontribute.geeksforgeeks.org/wp-content/uploads/array-2.png)
 
-# P1: Card Shuffle
+# P1: 2 Sum
 
-![Cards](https://i0.wp.com/freepngimages.com/wp-content/uploads/2017/04/playing-cards-aces.png?fit=624%2C516)
+You are given an array of integers and a target number. Return the indices of the two numbers such that they add up to the given target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
 
-You are given an array of elements that represent a standard deck of cards
+## Example
+
+**Input**:
+```
+[2, 7, 11, 15], target = 9
+```
+**Output**
+```
+[0,1]
+```
+
+# P2: Combination Sum
+Similar to the previous question, you are given an array of integers and a target number. Find all unique combinations in the array in which integers sum to target.
+
+The same repeated number may be chosen from the array an unlimited number of times.
+
+**Input**:
+```
+[2,3,6,7], target = 7,
+```
+
+**Output**
+A solution set is:
+```
+[
+  [7],
+  [2,2,3]
+]
+```
+
