@@ -1,9 +1,9 @@
 ---
 title: "Play with Arrays"
-date: 2019-01-22
+date: 2019-01-28
 ---
 
-# A[r,[r,a],y,s]
+# `A[r,[r,a],y,s]`
 
 This week, we will be reviewing the topic of arrays. The concept of arrays are usually one of the very first concepts taught in a Computer Science curriculum and with good reason! Arrays are really important to understand since they are the framework behind many of the data structures we use, along with the actual architecture of our memory systems in our computers.
 
@@ -11,42 +11,32 @@ An array is defined as a collection of items stored at contiguous memory locatio
 
 ![Array Representation](https://cdncontribute.geeksforgeeks.org/wp-content/uploads/array-2.png)
 
+
 # P1: 2 Sum
 
-You are given an array of integers and a target number. Return the indices of the two numbers such that they add up to the given target.
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
+You are given an array of integers and a target number. Return the indices of the two numbers such that they add up to the given target. You may assume that each input would have exactly one solution, and you may not use the same element twice.
 
 ## Example
 
-**Input**:
-```
-[2, 7, 11, 15], target = 9
-```
-**Output**
-```
-[0,1]
-```
+| Array            | Target       | Output      |
+|------------------|--------------|-------------|
+| `[2, 7, 11, 15]` |            9 | `[0, 1]`    |
 
-# P2: Combination Sum
 
-Similar to the previous question, you are given an array of integers and a target number. Find all unique combinations in the array in which integers sum to target.
+# P2: Longest Monotonically Increasing Subsequence
 
-The same repeated number may be chosen from the array an unlimited number of times.
+A ***monotonically increasing sequence*** is a sequence where every value is greater than or equal to the previous.
 
-**Input**:
-```
-[2,3,6,7], target = 7,
-```
+Given an array or random integers, return the index and length of the longest monotonically increasing subsequence.
 
-**Output**
+## Example
 
-A solution set is:
-```
-[
-  [7],
-  [2,2,3]
-]
-```
+| Input                      | Subsequence    | Start Index | Length |
+|----------------------------|----------------|-------------|--------|
+| `[4, 1, 3, 5, 4]`          | `[1, 3, 5]`    |           1 |      3 |
+| `[5, 6, 7, 2, 4, 7, 9, 7]` | `[2, 4, 7, 9]` |           3 |      4 |
+| `[]`                       | `[]`           |           0 |      0 |
+
 
 # Solutions
 
