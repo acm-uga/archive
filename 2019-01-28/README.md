@@ -3,7 +3,7 @@ title: "Play with Arrays"
 date: 2019-01-28
 ---
 
-# `A[r,[r,a],y,s]`
+# Arrays
 
 This week, we will be reviewing the topic of arrays. The concept of arrays are usually one of the very first concepts taught in a Computer Science curriculum and with good reason! Arrays are really important to understand since they are the framework behind many of the data structures we use, along with the actual architecture of our memory systems in our computers.
 
