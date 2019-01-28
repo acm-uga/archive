@@ -27,7 +27,7 @@ You may assume that each input would have exactly one solution, and you may not 
 [0,1]
 ```
 
-# P2: Combination Sum:
+# P2: Combination Sum
 
 Similar to the previous question, you are given an array of integers and a target number. Find all unique combinations in the array in which integers sum to target.
 
@@ -48,3 +48,8 @@ A solution set is:
 ]
 ```
 
+# Solutions
+
+As usual, [sample solutions][csip-uga/archive] are posted on GitHub.
+
+[csip-uga/archive]: https://github.com/csip-uga/archive
