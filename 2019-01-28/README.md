@@ -10,3 +10,9 @@ This week, we will be reviewing the topic of arrays. The concept of arrays are u
 An array is defined as a collection of items stored at contiguous memory locations arranged as a numbered sequence, so that each individual item can be referred to by its position number or index. By storing multiple items together like this, we can easily calculate the position of an element by imply adding an offset to a base value, i.e., the memory location of the first element of the array.
 
 ![Array Representation](https://cdncontribute.geeksforgeeks.org/wp-content/uploads/array-2.png)
+
+# P1: Card Shuffle
+
+![Cards](https://i0.wp.com/freepngimages.com/wp-content/uploads/2017/04/playing-cards-aces.png?fit=624%2C516)
+
+You are given an array of elements that represent a standard deck of cards
