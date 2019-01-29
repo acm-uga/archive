@@ -16,20 +16,15 @@ def lmis(data):
     best_i = 0
     best_n = 0
 
-    if len(data) == 0:
-        return 0, 0
-
-    i = 0
-    j = 0
-    while j + 1 < len(data):
-        if data[j] <= data[j+1]:
-            j += 1
-        else:
-            n = j - i + 1
+    start = 0  # Index of the first element in the subsequence.
+    stop = 0   # Index of the last element in the subsequence.
+    while stop < len(data):
+        stop += 1
+        if stop == len(data) or not data[stop - 1] <= data[stop]:
+            n = stop - start
             if best_n < n:
                 best_n = n
-                best_i = i
-            j += 1
-            i = j
+                best_i = start
+            start = stop
 
     return best_i, best_n
