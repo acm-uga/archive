@@ -54,3 +54,10 @@ Given a non-empty list of words, return the k most frequent elements. Your answe
 
 ### Explanation: ###
 ``` "let's" ``` and ```"go"``` are the two most frequent words. Note that ```"go"``` comes before ```"let's"``` due to a lower alphabetical order.
+
+
+# Solutions
+
+As usual, [sample solutions][csip-uga/archive] are posted on GitHub.
+[csip-uga/archive]: https://github.com/csip-uga/archive
+
