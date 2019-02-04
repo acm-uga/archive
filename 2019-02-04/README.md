@@ -1,9 +1,9 @@
 ---
-title: "More Maps"
+title: "Beachfront Frequencies"
 date: 2019-02-04
 ---
 
-# More Maps
+# Beachfront Frequencies
 
 You are given a map in form of a two-dimensional integer grid where 1 represents land and 0 represents water.
 
@@ -26,12 +26,12 @@ Determine the perimeter of the island.
  [1,1,0,0]]
 ```
 
-### Output: 
+### Output:
 ```
 16
 ```
 
-### Explanation: 
+### Explanation:
 
 The perimeter is the 16 yellow stripes in the image below:
 
@@ -61,4 +61,3 @@ Given a non-empty list of words, return the k most frequent elements. Your answe
 As usual, [sample solutions][csip-uga/archive] are posted on GitHub.
 
 [csip-uga/archive]: https://github.com/csip-uga/archive
-
