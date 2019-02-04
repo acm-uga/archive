@@ -59,5 +59,6 @@ Given a non-empty list of words, return the k most frequent elements. Your answe
 # Solutions
 
 As usual, [sample solutions][csip-uga/archive] are posted on GitHub.
+
 [csip-uga/archive]: https://github.com/csip-uga/archive
 
