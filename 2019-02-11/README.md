@@ -19,10 +19,19 @@ There are two types of heaps: a maximum heap and a minimum heap.
 ### Max Heap
 - The root node of a max heap is the highest value in the heap.
 - The value of each node is less than or equal to the value of its parent.
+![Max Heap Implementation](https://www.tutorialspoint.com/data_structures_algorithms/images/max_heap_example.jpg "Max Heap Implementation")
 
-## Min Heap
+### Min Heap
 - The root node of a minimum heap is the lowest value in the heap.
 - The value of each node is greater than or equal to the value of its parent.
+![Min Heap Implementation](http://interactivepython.org/courselib/static/pythonds/_images/heapOrder.png "Min Heap Implementation")
+
+
+Finding the min, max, median value in a collection of data.
+Graph algorithms
+priority queues. The heap is a concrete implementation of the priority queue abstract data type.
+Schedulers (for finding the first/earliest action item on the schedule).
+Dijkstra’s shortest path algorithm (no, it is not a typo or something I made up).
 
 
 ### Example:
