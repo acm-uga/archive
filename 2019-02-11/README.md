@@ -1,132 +1,40 @@
 ---
-title: "Keep the Heap"
+title: "Weird Bases"
 date: 2019-02-11
 ---
 
-# Keep the Heap
+# Counting in base N
 
-Building upon some previous concepts we've seen in CSIP recently, this week we are going to discuss Heaps. Heaps are an extremely
-useful data structure to understand and be able to implement but many people don't seem to have a good grasp of the concept even
-after taking Data Structures. Hopefully we can change that today!
+As a computer science student, you're likely familiar with counting in different bases.
 
-A heap is defined as a specialized tree-based data structure which is essentially an almost complete tree that satisfies the 
-heap property.
+For this problem, you are given two natural numbers `b` and `d`, and your task is to generate all `d` digit numbers in base `b`.
 
-*If you're hazy on your tree data structures - check out our previous [tree introduction](http://https://csip-uga.github.io/problems/2018-12-03/README "tree introduction")*
+Each "number" is represented as a list of `d` integers in "big endian" meaning the most significant digit comes first (the usual way humans write numbers). For example, in base 10, the number 1337 would be represented by the list `[1, 3, 3, 7]`. In base 16, the number 0xAF would be represented be `[10, 15]` (because A is 10 and F is 15).
 
-There are two types of heaps: a maximum heap and a minimum heap.
+## Example
 
-### Max Heap
-- The root node of a max heap is the highest value in the heap.
-- The value of each node is less than or equal to the value of its parent.
-![Max Heap Implementation](https://www.tutorialspoint.com/data_structures_algorithms/images/max_heap_example.jpg "Max Heap Implementation")
+| Input        | Numbers          | Output                             |
+|--------------|------------------|------------------------------------|
+| `b=2`, `d=2` | 00, 01, 10, 11   | `[[0, 0], [0, 1], [1, 0], [1, 1]]` |
+| `b=5`, `d=1` | 0, 1, 2, 3, 4, 5 | `[[0], [1], [2], [3], [4], [5]]`   |
 
-### Min Heap
-- The root node of a minimum heap is the lowest value in the heap.
-- The value of each node is greater than or equal to the value of its parent.
-![Min Heap Implementation](http://interactivepython.org/courselib/static/pythonds/_images/heapOrder.png "Min Heap Implementation")
 
+# Rhyme Schemes
 
-Finding the min, max, median value in a collection of data.
-Graph algorithms
-priority queues. The heap is a concrete implementation of the priority queue abstract data type.
-Schedulers (for finding the first/earliest action item on the schedule).
-Dijkstra’s shortest path algorithm (no, it is not a typo or something I made up).
+In poetry, we have a syntax for talking about rhyme schemes. For example, a three line poem could have the rhyme schemes `AAA`, `AAB`, `ABA`, or `ABC`. Each letter corresponds to a unique syllable at the end of each line. Lines marked by the same letter rhyme. The first line is always marked by an `A` and you can't use a new letter unless you have used the previous letter, e.g. you can't use `C` unless you've used `B`.
 
+For this problem, your task is to generate all possible rhyme schemes for a poem of `n` lines. We'll use numbers instead of letters to make things easier, where 0 represents `A`, 1 represents `B`, etc.
 
-### Example:
+## Example
 
-
-
-### Input:
-
-```
-
-[[0,1,0,0],
-
-
-
- [1,1,1,0],
-
-
-
- [0,1,0,0],
-
-
-
- [1,1,0,0]]
-
-```
-
-
-
-### Output:
-
-```
-
-16
-
-```
-
-
-
-### Explanation:
-
-
-
-The perimeter is the 16 yellow stripes in the image below:
-
-
-
-![Island Perimeter](https://assets.leetcode.com/uploads/2018/10/12/island.png)
-
-
-
-
-
-## Top K Frequent Words ##
-
-
-
-Given a non-empty list of words, return the k most frequent elements. Your answer should be sorted by frequency from highest to lowest. If two words have the same frequency, then the word with the lower alphabetical order comes first.
-
-
-
-### Input: ###
-
-```
-
-["let's", "go", "dawgs", "let's", "go", "sic", "em"], k = 2
-
-```
-
-
-
-### Output: ###
-
-```
-
-["go", "let's"]
-
-```
-
-
-
-### Explanation: ###
-
-``` "let's" ``` and ```"go"``` are the two most frequent words. Note that ```"go"``` comes before ```"let's"``` due to a lower alphabetical order.
-
-
-
+| Input | Output                                         |
+|-------|------------------------------------------------|
+| `2`   | `[[0, 0], [0, 1]]`                             |
+| `3`   | `[[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 1, 2]]` |
 
 
 # Solutions
 
-
-
 As usual, [sample solutions][csip-uga/archive] are posted on GitHub.
 
-
-
 [csip-uga/archive]: https://github.com/csip-uga/archive
-
