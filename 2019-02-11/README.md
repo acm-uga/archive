@@ -12,7 +12,17 @@ after taking Data Structures. Hopefully we can change that today!
 A heap is defined as a specialized tree-based data structure which is essentially an almost complete tree that satisfies the 
 heap property.
 
-*If you're hazy on your tree data structures - check out our previous [tree introduction](http://https://csip-uga.github.io/problems/2018-12-03/README "tree introduction")
+*If you're hazy on your tree data structures - check out our previous [tree introduction](http://https://csip-uga.github.io/problems/2018-12-03/README "tree introduction")*
+
+There are two types of heaps: a maximum heap and a minimum heap.
+
+### Max Heap
+- The root node of a max heap is the highest value in the heap.
+- The value of each node is less than or equal to the value of its parent.
+
+## Min Heap
+- The root node of a minimum heap is the lowest value in the heap.
+- The value of each node is greater than or equal to the value of its parent.
 
 
 ### Example:
