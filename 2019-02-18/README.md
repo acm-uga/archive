@@ -42,19 +42,19 @@ You put each task into an array:
 ```
 and create a two dimensional array *A* with all of your tasks:
 ```
-A = [[N0, T0, P0], ... , Nn-1, Tn-1, Pn-1]]
+A = [[N0, T0, P0], ... , Ni-1, Ti-1, Pi-1]]
 ```
 You can only complete one task at a time - what order do you need to do the tasks in to be the most efficient?
 
 ## Input:
-| Task Name           | Time Needed | Priority |
-|---------------------|-------------|----------|
-| `Attend class`      | 65          | 1        |
-| `Workout at Ramsey` | 45          | 5        |
-| `Get coffee at JJ's`| 15          | 6        |
-| `Go to CSIP`        | 70          | 3        |
-| `Study at library`  | 20          | 4        |
-| `Complete homework` | 90          | 2        |
+| Index(i) | Task Name           | Time Needed | Priority |
+|----------|---------------------|-------------|----------|
+|  1       | `Attend class`      | 65          | 1        |
+|  2       | `Workout at Ramsey` | 45          | 5        |
+|  3       | `Get coffee at JJ's`| 15          | 6        |
+|  4       | `Go to CSIP`        | 70          | 3        |
+|  5       | `Study at library`  | 20          | 4        |
+|  6       | `Complete homework` | 90          | 2        |
 
 ## Output:
 
