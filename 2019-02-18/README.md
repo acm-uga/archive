@@ -3,6 +3,8 @@ title: "Greed is Good"
 date: 2019-02-18
 ---
 
+# Greed is Good
+
 A greedy algorithm is a simple, intuitive algorithm that is used in optimization problems. True to it's name - a greedy algorithm always makes the choice that appears to be the best at that moment. The hope is that a locally-optimal solution will lead us to a globally-optimal solution.
 
 ```
