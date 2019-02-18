@@ -43,7 +43,7 @@ You put each task into an array:
 ```
 and create a two dimensional array *A* with all of your tasks:
 ```
-A = [[N0, T0, P0], ... , Ni-1, Ti-1, Pi-1]]
+A = [[N0, T0, P0], ... , [Ni-1, Ti-1, Pi-1]]
 ```
 You can only complete one task at a time - what order do you need to do the tasks in to be the most efficient?
 
@@ -74,7 +74,7 @@ Your task is to find the minimum spanning tree of a given graph.
 
 ## Input
 
-You will be given a list of edges representing the graph. Each edge consists of three integers `(A, B, W)` where `A` and `B` are IDs for the nodes connected by the graph and `W` is the weight of the edge. `A` will always be less than `B`.
+You will be given a list of edges representing the graph. Each edge consists of three integers `(A, B, W)` where `A` and `B` are IDs for the nodes connected by the edge and `W` is the weight of the edge. Since these are undirected graphs, the relative order of `A` and `B` doesn't matter. For the sake of standardization, we'll say that `A` will always be less than `B`.
 
 ## Output
 
