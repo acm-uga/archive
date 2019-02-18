@@ -36,19 +36,24 @@ Obviously the correct value should be **99** but the greedy algorithm fails to f
 
 You are a busy Computer Science student at UGA trying to stay on top of your schedule but you're struggling to keep up! There must be a better way - and you're going to use a computer to find it! To stay organized, you have a list of tasks that must be completed today along with the amount of time they'll take and the priority of each. 
 
-You put each task into an array and create a two dimensional array with all of your tasks:
+You put each task into an array:
 ```
-[[name of task 1, amount of time needed, priority], ... , name of task n-1, amount of time needed, priority]]
+[task name, amount of time needed, priority]
+```
+and create a two dimensional array with all of your tasks:
+```
+[[N0, T0, P0], ... , Nn-1, Tn-1, Pn-1]]
 ```
 
 ## Input:
 | Task Name           | Time Needed | Priority |
 |---------------------|-------------|----------|
-| `Attend class`      | 60          | 1        |
-| `Workout at Ramsey` | 45          | 3        |
-| `Get coffee at JJ's`| 20          | 4        |
-| `Go to CSIP`        | 75          | 2        |
-| `Go to study group`| 20          | 4         |
-| `Go to CSIP`        | 75          | 2        |
+| `Attend class`      | 65          | 1        |
+| `Workout at Ramsey` | 45          | 5        |
+| `Get coffee at JJ's`| 15          | 6        |
+| `Go to CSIP`        | 70          | 3        |
+| `Study at library`  | 20          | 4        |
+| `Complete homework` | 90          | 2        |
 
+## Output:
 
