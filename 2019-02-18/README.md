@@ -92,6 +92,31 @@ After assigning integers to each of the nodes, the graph above can be represente
 	[3, 6, 8],  [3, 7, 18], [4, 5, 9],
 	[4, 6, 8],  [5, 6, 7],  [5, 8, 4],
 	[5, 9, 5],  [6, 7, 10], [6, 9, 9],
-	[7, 8, 4],  [7, 9, 3],  [8, 9, 1],
+	[7, 8, 4],  [7, 9, 3],  [8, 9, 1]
 ]
 ```
+
+The output are just those nodes which form the minimum spanning tree:
+
+```
+[
+    [0, 2, 3],
+    [1, 4, 2],
+    [2, 4, 2],
+    [3, 6, 8],
+    [4, 6, 8],
+    [5, 6, 7],
+    [5, 8, 4],
+    [7, 9, 3],
+    [8, 9, 1]
+]
+```
+
+The relative order of edges is irrelevant in both the input and output.
+
+
+# Solutions
+
+As usual, [sample solutions][csip-uga/archive] are posted on GitHub.
+
+[csip-uga/archive]: https://github.com/csip-uga/archive
