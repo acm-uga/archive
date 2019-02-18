@@ -40,9 +40,9 @@ You put each task into an array:
 ```
 [task name, amount of time needed, priority]
 ```
-and create a two dimensional array with all of your tasks:
+and create a two dimensional array *A* with all of your tasks:
 ```
-[[N0, T0, P0], ... , Nn-1, Tn-1, Pn-1]]
+A = [[N0, T0, P0], ... , Nn-1, Tn-1, Pn-1]]
 ```
 
 ## Input:
