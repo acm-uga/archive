@@ -44,6 +44,7 @@ and create a two dimensional array *A* with all of your tasks:
 ```
 A = [[N0, T0, P0], ... , Nn-1, Tn-1, Pn-1]]
 ```
+You can only complete one task at a time - what order do you need to do the tasks in to be the most efficient?
 
 ## Input:
 | Task Name           | Time Needed | Priority |
