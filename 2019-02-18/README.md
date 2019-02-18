@@ -48,6 +48,7 @@ A = [[N0, T0, P0], ... , [Ni-1, Ti-1, Pi-1]]
 You can only complete one task at a time - what order do you need to do the tasks in to be the most efficient?
 
 ## Input:
+
 | Index(i) | Task Name           | Time Needed | Priority |
 |----------|---------------------|-------------|----------|
 |  1       | `Attend class`      | 65          | 1        |
