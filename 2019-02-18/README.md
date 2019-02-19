@@ -97,7 +97,7 @@ After assigning integers to each of the nodes, the graph above can be represente
 ]
 ```
 
-The output are just those nodes which form the minimum spanning tree:
+The output are just those edges which form the minimum spanning tree:
 
 ```
 [
