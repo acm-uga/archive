@@ -3,7 +3,7 @@ title: "Arrays for Days"
 date: 2019-02-25
 ---
 
-## P1: `memmove(3)`
+## P1: memmove(3)
 In the C library, there exists a useful function named **memmove** which is used to copy a block of data from a source address to a destination address.
 
 The function has the following signature:
