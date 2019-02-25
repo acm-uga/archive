@@ -1,51 +1,66 @@
 ---
-title: "INSERT TITLE"
+title: "Arrays for Days"
 date: 2019-02-25
 ---
 
-# TITLE
+## P1: `memmove(3)`
+In the C library, there exists a useful function named **memmove** which is used to copy a block of data from a source address to a destination address.
 
-## P1: Memcpy
-In the C library, there exists a useful function named **memcpy** which is used to copy a block of data from a source address to a destination address.
+The function has the following signature:
 
-We declare it with the following function:
 ```
-void *memcpy(void *str1, const void *str2, size_t n)
-```
-* str1 − This is a pointer to the destination array where the content is to be copied, type-casted to a pointer of type void*.
-* str2 − This is a pointer to the source of data to be copied, type-casted to a pointer of type void*.
-* n − This is the number of bytes to be copied.
-
-We can see an example of the function in the character array below:
-```
-*s = pointer to source[0]
-*d = pointer to destination[7]
-
-memcopy(*s, *d, 3)
-
-before:
-char source[15] = | 'U' | 'G' | 'A' | ' ' | 'i' | 's' | ' ' | 't' | 'h' | 'e' | ' ' | 'b' | 'e' | 's' | 't' |
-
-after:
-char destination[15] = | 'U' | 'G' | 'A' | ' ' | 'i' | 's' | ' ' | 'U' | 'G' | 'A' | ' ' | 'b' | 'e' | 's' | 't' |
+void *memmove(void *dest, const void *src, size_t n)
 ```
 
-Can you write an implementation for **memcopy** given a character array like the example given?
+Where each argument has the following purpose:
+
+- `dest`: The pointer to the destination where the data is to be copied.
+- `src`: The pointer to the first byte of data to be copied.
+- `n`: The number of bytes to copy.
+
+One important feature of `memmove` is that it works even when the source and destination overlap.
+
+### The problem
+
+We will implement a function that is like `memmove` but for arrays. Thus you can use any programming language you'd like. Your function should take four inputs:
+
+- `data`: The array in being manipulated;
+- `dest`: The index into the array where the data is to be copied.
+- `src`: The index of the first element to be copied.
+- `n`: The number of elements to copy.
+
+Remember that your code must work when the source and destination overlap!
 
 
-## P2: Memmove
+### Example
 
-Now that you've implemented **memcpy**, you will realize it's a fairly simple (but fast) algorithm. A problem arises when copying from one location to another. If your intervals are overlapping, this could reuslt in **memcpy** overwritting the source while it's being read! Not good. We can see an example of this below:
-```
-char[] str = "foo-bar";
-memcpy(&str[3],&str[4],4); //memcopy would fail
-```
-To remedy this, the C library includes a function called **memmove** which can handle overlaps correctly.
+| Input Array                | dest | src | n | Result                     |
+|----------------------------|------|-----|---|----------------------------|
+| `[_, _, A, B, C, _, _, _]` |    5 |   2 | 3 | `[_, _, A, B, C, A, B, C]` |
+| `[_, _, A, B, C, _, _, _]` |    3 |   2 | 3 | `[_, _, A, A, B, C, _, _]` |
+| `[_, _, A, B, C, _, _, _]` |    1 |   2 | 3 | `[_, A, B, C, C, _, _, _]` |
 
-The declaration of **memmove** is very similar to **memcpy**
-```
-void *memmove(void *str1, const void *str2, size_t n)
-```
 
-Having already implemented **memcopy** and knowing it's shortcomings, can you adapt your code to create a function for **memmove**?
+## P2: Deque
 
+A double-ended queue is a queue that allows you to push and pop from both the front and back of the list and to access any element by index, all in constant time. For this problem, you will need to design and implement a data structure that supports these operations.
+
+### Details
+
+You should define a class with the following methods:
+
+- **Deque(capacity)**: The constructor should take a capacity. Your deque may panic or throw an exception if the user tries to use more than the initial capacity.
+- **push_front(val)** / **push_back(value)**: The deque must have methods to insert at both ends.
+- **pop_front()** / **pop_back()**: The deque must have methods to remove elements from both ends.
+- **get(i)**: The deque must have a methods to access elements by index.
+
+### Bonus
+
+As a bonus, you may support reallocation to increase the capacity when the user tries to insert more elements than you have capacity. This reallocation may take linear time but **must not** effect the *amortized* runtime of the above methods.
+
+
+## Solutions
+
+As usual, [sample solutions][csip-uga/archive] are posted on GitHub.
+
+[csip-uga/archive]: https://github.com/csip-uga/archive
