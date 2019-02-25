@@ -12,8 +12,8 @@ We declare it with the following function:
 ```
 void *memcpy(void *str1, const void *str2, size_t n)
 ```
-* str1 − This is pointer to the destination array where the content is to be copied, type-casted to a pointer of type void*.
-* str2 − This is pointer to the source of data to be copied, type-casted to a pointer of type void*.
+* str1 − This is a pointer to the destination array where the content is to be copied, type-casted to a pointer of type void*.
+* str2 − This is a pointer to the source of data to be copied, type-casted to a pointer of type void*.
 * n − This is the number of bytes to be copied.
 
 We can see an example of the function in the character array below:
@@ -40,7 +40,6 @@ Now that you've implemented **memcpy**, you will realize it's a fairly simple (b
 char[] str = "foo-bar";
 memcpy(&str[3],&str[4],4); //memcopy would fail
 ```
-
 To remedy this, the C library includes a function called **memmove** which can handle overlaps correctly.
 
 The declaration of **memmove** is very similar to **memcpy**
