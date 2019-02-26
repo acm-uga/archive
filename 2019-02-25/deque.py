@@ -1,14 +1,28 @@
 class Deque:
+    '''A double-ended queue
+    '''
 
-    def __init__(self, capacity):
-        assert 0 < capacity
+    def __init__(self, capacity=0):
+        '''Create a new deque.
+
+        Arguments:
+            capacity (non-negative int):
+                The initial capacity allocated by the deque.
+        '''
+        assert 0 <= capacity
         self.store = [None for _ in range(capacity)]
         self.cap = capacity
         self.len = 0
-        self.front = 0  # the index after the last element
-        self.back = 0  # the index before the first element
+        self.front = 0  # the index after the last item
+        self.back = 0  # the index before the first item
 
     def push_front(self, val):
+        '''Insert an item at the end of the queue.
+
+        Arguments:
+            val:
+                The item to be inserted.
+        '''
         if self.cap == self.len:
             self.reallocate()
 
@@ -20,6 +34,12 @@ class Deque:
         self.len += 1
 
     def push_back(self, val):
+        '''Insert an item at the beginning of the queue.
+
+        Arguments:
+            val:
+                The item to be inserted.
+        '''
         if self.cap == self.len:
             self.reallocate()
 
@@ -31,6 +51,8 @@ class Deque:
         self.len += 1
 
     def pop_front(self):
+        '''Remove an item at the end of the queue.
+        '''
         if self.len == 0:
             raise IndexError("pop from empty deque")
 
@@ -44,6 +66,8 @@ class Deque:
         return val
 
     def pop_back(self):
+        '''Remove an item at the beginning of the queue.
+        '''
         if self.len == 0:
             raise IndexError("pop from empty deque")
 
@@ -57,6 +81,8 @@ class Deque:
         return val
 
     def get(self, i):
+        '''Get the item at position ``i`` in the queue.
+        '''
         if self.len <= i:
             raise IndexError("deque index out of bounds")
 
@@ -64,12 +90,16 @@ class Deque:
         return self.store[(back + i) % self.cap]
 
     def reallocate(self):
+        '''Double the allocation of this queue.
+        '''
+        new_cap = 1 is self.cap == 0 else self.cap * 2
+
         # Copy our data into a temporary deque with twice the capacity.
         #
         # Note: we must double the capacity to maintain an amortized constant
         # time in the other methods. Growing by a constant factor will lead to
         # a linear amortized runtime.
-        tmp_deque = Deque(self.cap * 2)
+        tmp_deque = Deque(new_cap)
         while 0 < self.len:
             val = self.pop_back()
             tmp_deque.push_front(val)
@@ -80,7 +110,6 @@ class Deque:
         self.len = tmp_deque.len
         self.front = tmp_deque.front
         self.back = tmp_deque.back
-
 
 
 def test_deque():
