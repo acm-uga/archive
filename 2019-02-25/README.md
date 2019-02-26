@@ -43,16 +43,18 @@ Remember that your code must work when the source and destination overlap!
 
 ## P2: Deque
 
-A double-ended queue is a queue that allows you to push and pop from both the front and back of the list and to access any element by index, all in constant time. For this problem, you will need to design and implement a data structure that supports these operations.
+A double-ended queue is a queue that allows you to push and pop from both the front and back and to access any element by index. For this problem, you will need to design and implement a data structure that supports all of these operations in constant time.
 
 ### Details
 
 You should define a class with the following methods:
 
 - **Deque(capacity)**: The constructor should take a capacity. Your deque may panic or throw an exception if the user tries to use more than the initial capacity.
-- **push_front(val)** / **push_back(value)**: The deque must have methods to insert at both ends.
+- **push_front(value)** / **push_back(value)**: The deque must have methods to insert at both ends.
 - **pop_front()** / **pop_back()**: The deque must have methods to remove elements from both ends.
 - **get(i)**: The deque must have a methods to access elements by index.
+
+For the push and pop methods, "front" refers to the end of the list and "back" refers to the beginning.
 
 ### Bonus
 
