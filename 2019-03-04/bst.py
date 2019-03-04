@@ -19,8 +19,8 @@ class BinarySearchTree:
             return None
         mid = len(data) // 2
         root = data[mid]
-        left = bst_from_sorted_list(data[:mid])
-        right = bst_from_sorted_list(data[mid+1:])
+        left = cls.from_sorted_list(data[:mid])
+        right = cls.from_sorted_list(data[mid+1:])
         return cls(root, left, right)
 
 
