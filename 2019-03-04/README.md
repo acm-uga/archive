@@ -20,16 +20,16 @@ Given a sorted array of integers in ascending order, construct a balanced binary
 
 #### Input Array:
 
-`[1, 2, 3, 4, 5]`
+`[1, 2, 3, 4, 5, 6, 7]`
 
 #### Output Tree:
 
 ```
-       4
-     /   \
-    2      5
-  /   \      \
- 1     3       6
+      4
+    /   \
+  2       6
+ / \     / \
+1   3   5   7
 ```
 
 #### Incorrect Output:
@@ -46,6 +46,10 @@ Note that the following tree is technically a binary search tree, but not a *bal
          4
           \
            5
+		    \
+			 6
+			  \
+			   7
 ```
 
 
