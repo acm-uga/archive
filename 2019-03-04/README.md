@@ -46,10 +46,10 @@ Note that the following tree is technically a binary search tree, but not a *bal
          4
           \
            5
-		    \
-			 6
-			  \
-			   7
+        \
+             6
+              \
+               7
 ```
 
 
