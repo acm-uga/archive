@@ -32,35 +32,6 @@ Finding the largest integer using greedy choices (marked with an x)
 
 Obviously the correct value should be **99** but the greedy algorithm fails to find the largest sum. This error is due to it making decisions only based on information available on a given step rather than evaluating the problem as a whole. With that being said, greedy algorithms are really successful with other types of problems such as Huffman encoding, used for data compression, and Dijkstra's Shortest Path Algorithm.
 
-
-# A Scheduling Problem
-
-You are a busy Computer Science student at UGA trying to stay on top of your schedule but you're struggling to keep up! There must be a better way - and you're going to use a computer to find it! To stay organized, you have a list of tasks that must be completed today along with the amount of time they'll take and the priority of each.
-
-You put each task into an array:
-```
-[task name, amount of time needed, priority]
-```
-and create a two dimensional array *A* with all of your tasks:
-```
-A = [[N0, T0, P0], ... , [Ni-1, Ti-1, Pi-1]]
-```
-You can only complete one task at a time - what order do you need to do the tasks in to be the most efficient?
-
-## Input:
-
-| Index(i) | Task Name           | Time Needed | Priority |
-|----------|---------------------|-------------|----------|
-|  1       | `Attend class`      | 65          | 1        |
-|  2       | `Workout at Ramsey` | 45          | 5        |
-|  3       | `Get coffee at JJ's`| 15          | 6        |
-|  4       | `Go to CSIP`        | 70          | 3        |
-|  5       | `Study at library`  | 20          | 4        |
-|  6       | `Complete homework` | 90          | 2        |
-
-## Output:
-
-
 # Minimum Spanning Trees
 
 One classic problem in Computer Science with a greedy solution is to find the minimum spanning tree of a connected graph.
