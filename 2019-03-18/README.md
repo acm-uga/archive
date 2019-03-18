@@ -14,3 +14,10 @@ Good candidates for RLE include simple graphic images such as icons, line drawin
 
 For our first problem, implement a method to perform basic string compression using the counts of repeated characters. If the compressed string doesn't result in a smaller string, simply return the original. You can assume the string only has uppercase and lowercase alphabetical letters (A-z).
 
+### Example
+
+| Input String      | Result        |
+|-------------------|---------------|
+| `aabcccccaaa`     | `a2b1c5a3`    |
+| `AAAaaaAAAb`      | `A3a3A3b1`    |
+| `a`               | `a1`          |
