@@ -20,4 +20,4 @@ For our first problem, implement a method to perform basic string compression us
 |-------------------|---------------|
 | `aabcccccaaa`     | `a2b1c5a3`    |
 | `AAAaaaAAAb`      | `A3a3A3b1`    |
-| `a`               | `a1`          |
+| `a`               | `a`           |
