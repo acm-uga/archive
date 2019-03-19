@@ -16,6 +16,12 @@ class HuffmanTree:
         A Huffman tree has a value and a frequency. The value is a string
         listing the characters encoded by the tree. The frequency is the number
         of times any character encoded by the tree appears in the training text.
+
+        Arguments:
+            value (str): The characters encoded by this tree.
+            freq (int): The sum of frequencies for all characters.
+            left (HuffmanTree or None): The left subtree.
+            right (HuffmanTree or None): The right subtree.
         '''
         self.value = value
         self.freq = freq
@@ -35,17 +41,26 @@ class HuffmanTree:
 
     def __lt__(self, other):
         '''The definition of the less-than operator (<).
+
+        Huffman trees are sorted by frequency. This enables us to build a
+        min-heap of Huffman trees in the training algorithm.
+
+        Arguments:
+            other (HuffmanTree):
+                The tree on the right-hand-side of the comparison.
         '''
-        # Huffman trees are sorted by frequency. This enables us to build a
-        # min-heap of Huffman trees in the training algorithm.
         return self.freq < other.freq
 
-    def get_codes(self, _prefix=None):
-        '''Get the table of codes represented by this Huffman tree
+    def get_codes(self, prefix=None):
+        '''Get the table of codes represented by this Huffman tree.
+
+        Arguments:
+            prefix (list of int):
+                Prepend this prefix to all codes in this tree.
         '''
-        # The user is not expected to set ``_prefix`` to anything.
+        # The user is not expected to set ``prefix`` to anything.
         # The default is the empty list.
-        _prefix = _prefix or []
+        prefix = prefix or []
 
         # If there is a left subtree there is also a right.
         # Recursivly get the codes for the left and right subtree, then combine
@@ -53,15 +68,15 @@ class HuffmanTree:
         # and the right subtree with a one.
         if self.left is not None:
             assert self.right is not None
-            left_codes = self.left.get_codes(_prefix=(*_prefix, 0))
-            right_codes = self.right.get_codes(_prefix=(*_prefix, 1))
+            left_codes = self.left.get_codes(prefix=(*prefix, 0))
+            right_codes = self.right.get_codes(prefix=(*prefix, 1))
             return {**left_codes, **right_codes}
 
         # If we're at a leaf node, the tree represents a single character
-        # and ``_prefix`` is the code.
+        # and ``prefix`` is the code.
         else:
             assert self.right is None
-            return {self.value: _prefix}
+            return {self.value: tuple(prefix)}
 
     @classmethod
     def from_text(cls, text):
