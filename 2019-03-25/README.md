@@ -28,10 +28,21 @@ for i in range(100):
 ```
 Just like Java, Python has built-in types like: ```int```, ```float```, ```bool```, and ```str```. ```int```, ```float```, and ```bool``` are considered to be simple or primitive data types because their values are not composed of any smaller parts. They cannot be broken down. On the other hand, strings and lists are different from the others because they are made up of smaller pieces. In the case of strings, they are made up of smaller strings each containing one character.
 
-Types that are comprised of smaller pieces are called collection data types. Depending on what we are doing, we may want to treat a collection data type as a single entity (the whole), or we may want to access its parts. 
-
+Types that are comprised of smaller pieces are called collection data types. Depending on what we are doing, we may want to treat a collection data type as a single entity (the whole), or we may want to access its parts. Collection data types tend to have tons of useful methods that can come in handy during a technical interview! Whatever your interviewing language, it's always a good idea to know your collection methods!
 
 ## P1: Valid Anagram
+
+Given two strings s and t , write a function to determine if t is an anagram of s. You may assume the string contains only lowercase alphabets.
+
+### Example
+```
+Input: s = "anagram", t = "nagaram"
+Output: true
+```
+```
+Input: s = "rat", t = "car"
+Output: false
+```
 
 ## P2: Custom Collection
 
