@@ -9,7 +9,7 @@ Languages like Java or C++ are considered statically-typed languages which means
 
 An example of this can be seen below:
 
-### Java Code
+#### Java Code
 ```
 int result = 0;
 for(int i=0; i<100; i++)
