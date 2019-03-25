@@ -32,7 +32,7 @@ Types that are comprised of smaller pieces are called collection data types. Dep
 
 ## P1: Valid Anagram
 
-Given two strings s and t , write a function to determine if t is an anagram of s. You may assume the string contains only lowercase alphabets.
+Given two strings ***s*** and ***t*** , write a function to determine if ***t*** is an anagram of ***s***. You may assume the string contains only lowercase alphabets.
 
 ### Example
 ```
