@@ -53,3 +53,10 @@ Given an integer, convert it to a roman numeral. Input is guaranteed to be withi
 | ```9```    | ```IX```     |                                        |
 | ```58```   | ```LVIII```  | L = 50, V = 5, III = 3                 |
 | ```1994``` | ```MCMXCIV```| M = 1000, CM = 900, XC = 90 and IV = 4 |
+
+
+## Solutions
+
+As usual, [sample solutions][csip-uga/archive] are posted on GitHub.
+
+[csip-uga/archive]: https://github.com/csip-uga/archive
