@@ -27,3 +27,15 @@ def canonical_email(addr):
 
     # The canonical email address is simple:
     return f'{username}@{host}'
+
+
+def test():
+    assert canonical_email('foobar@gmail.com') == 'foobar@gmail.com'
+    assert canonical_email('foo.bar@gmail.com') == 'foobar@gmail.com'
+    assert canonical_email('foobar+baz@gmail.com') == 'foobar@gmail.com'
+    assert canonical_email('foobar+baz+qux@gmail.com') == 'foobar@gmail.com'
+    assert canonical_email('foo.bar+baz@gmail.com') == 'foobar@gmail.com'
+
+
+if __name__ == '__main__':
+    test()
