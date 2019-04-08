@@ -8,10 +8,10 @@ String problems are a popular subject of many Computer Science technical intervi
 Imagine that you are working for a fintech company that processes millions of online payments from a variety of merchants. One of the features your company offers is the ability for merchants to create a custom ruleset to either **ALLOW** or **BLOCK** oncoming payments. Your task is to create a rules engine which parses a transaction feed (sent as a string), extracts the necessary information, and determines if the payment is allowed to be processed.
 
 Rules will have the following attributes:
-* amount: integer 
-* card_country: string 
-* currency: string 
-* ip_country: string
+* **amount:** integer 
+* **card_country:** string 
+* **currency:** string 
+* **ip_country:** string
 
 Your rules engine should first evaluate all "allow" rules, and if none of those match, evaluate all "block" rules. If an "allow" rule matches, return **True**. If a "block" rule matches, return **False**. If no "allow" or "block" rule matches, return **True**.
 
