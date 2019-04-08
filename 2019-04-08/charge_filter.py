@@ -17,8 +17,8 @@ class RuleSet:
             else:
                 self.block.append(rule)
 
-    def match(self, charge):
-        '''Match a charge against this rule-set.
+    def does_allow(self, charge):
+        '''Returns True if the charge should be allowed.
 
         Arguments:
             charge (Charge):
@@ -54,17 +54,17 @@ class TopRule:
     def __init__(self, type, body):
         '''Construct a new top-level rule.
 
-        This rule simply delegates to an underlying AND rule, but contains
+        This rule simply delegates to an underlying OR rule, but contains
         an additional `type` property used by rule-sets.
 
         Arguments:
             type (str):
                 Either ``"allow"`` or ``"block"``.
-            body (AndRule):
-                An ``AndRule`` for matching charges.
+            body (OrRule):
+                An ``OrRule`` for matching charges.
         '''
         assert type == "allow" or type == "block"
-        assert isinstance(body, AndRule)
+        assert isinstance(body, OrRule)
         self.type = type
         self.body = body
 
@@ -103,58 +103,8 @@ class TopRule:
             assert source.startswith('BLOCK:')
             type = 'block'
 
-        body = AndRule.parse(source[6:])
+        body = OrRule.parse(source[6:])
         return cls(type, body)
-
-
-class AndRule:
-    def __init__(self, rules):
-        '''Construct a new AND rule.
-
-        This rule matches a charge if all sub-rules match the charge.
-
-        Arguments:
-            rules (Sequence[OrRule]):
-                A list of rules, all of which must match a charge for this
-                rule to match a charge.
-        '''
-        for rule in rules:
-            assert isinstance(rule, OrRule)
-
-        self.rules = tuple(rules)
-
-    def match(self, charge):
-        '''Match a charge against this rule.
-
-        This returns True if all of the sub-rules match the charge.
-
-        Arguments:
-            charge (Charge):
-                A dictionary of properties of the charge.
-        '''
-        for rule in self.rules:
-            if not rule.match(charge):
-                return False
-        return True
-
-    @classmethod
-    def parse(cls, source):
-        '''Parse an AND rule.
-
-        The source is parsed as zero or more OR rules separated by "AND".
-
-        Arguments:
-            source (str):
-                The source code to parse.
-
-        Returns:
-            AndRule:
-                The parsed rule.
-        '''
-        source = source.strip()
-        rule_sources = source.split('AND')
-        rules = [OrRule.parse(r) for r in rule_sources]
-        return cls(rules)
 
 
 class OrRule:
@@ -164,12 +114,12 @@ class OrRule:
         This rule matches a charge if any sub-rules match the charge.
 
         Arguments:
-            rules (Sequence[CompareRule]):
+            rules (Sequence[AndRule]):
                 A list of rules, all of which must match a charge for this
                 rule to match a charge.
         '''
         for rule in rules:
-            assert isinstance(rule, CompareRule)
+            assert isinstance(rule, AndRule)
 
         self.rules = tuple(rules)
 
@@ -189,9 +139,59 @@ class OrRule:
 
     @classmethod
     def parse(cls, source):
+        '''Parse an AND rule.
+
+        The source is parsed as zero or more OR rules separated by "OR".
+
+        Arguments:
+            source (str):
+                The source code to parse.
+
+        Returns:
+            AndRule:
+                The parsed rule.
+        '''
+        source = source.strip()
+        rule_sources = source.split('OR')
+        rules = [AndRule.parse(r) for r in rule_sources]
+        return cls(rules)
+
+
+class AndRule:
+    def __init__(self, rules):
+        '''Construct a new AND rule.
+
+        This rule matches a charge if all sub-rules match the charge.
+
+        Arguments:
+            rules (Sequence[CompareRule]):
+                A list of rules, all of which must match a charge for this
+                rule to match a charge.
+        '''
+        for rule in rules:
+            assert isinstance(rule, CompareRule)
+
+        self.rules = tuple(rules)
+
+    def match(self, charge):
+        '''Match a charge against this rule.
+
+        This returns True if all of the sub-rules match the charge.
+
+        Arguments:
+            charge (Charge):
+                A dictionary of properties of the charge.
+        '''
+        for rule in self.rules:
+            if not rule.match(charge):
+                return False
+        return True
+
+    @classmethod
+    def parse(cls, source):
         '''Parse an OR rule.
 
-        The source is parsed as zero or more COMPARE rules separated by "OR".
+        The source is parsed as zero or more COMPARE rules separated by "AND".
 
         Arguments:
             source (str):
@@ -202,7 +202,7 @@ class OrRule:
                 The parsed rule.
         '''
         source = source.strip()
-        rule_sources = source.split('OR')
+        rule_sources = source.split('AND')
         rules = [CompareRule.parse(r) for r in rule_sources]
         return cls(rules)
 
@@ -350,7 +350,7 @@ def main(sources):
     (charge_source, *rule_sources) = sources
     charge = Charge.parse(charge_source)
     ruleset = RuleSet.parse(rule_sources)
-    return ruleset.match(charge)
+    return ruleset.does_allow(charge)
 
 
 if __name__ == '__main__':
