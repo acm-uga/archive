@@ -28,23 +28,20 @@ Your rules engine should first evaluate all "allow" rules, and if none of those 
 
 **Output:**
 ```True```
-
 The charge is allowed because the charged amount of 150 is less than the threshold of 1000. 
-
+___
 **Input:**
 ```[ "CHARGE: card_country=US&currency=USD8zamount=150&ipsountry.CA", "BLOCK: amount > 100",]```
 
 **Output:**
 ```False```
-
 The charge is blocked because the charged amount of 150 is over the threshold of 100. 
-
+___
 **Input:**
 ```[ "CHARGE: card_country=US&currency= USD8tamount=150&ip_country=CA", "ALLOW: amount < 100", "BLOCK: card_countty l= ip_country AND amount > 100", ]```
 
 **Output:**
 ```False```
-
 The first rule does not match, so we move on to the next rule. This is a compound rule that evaluates to true because the cardsountry (US) does not match the ipsountry (CA), and the amount (150) is over the limit of 100. Since we matched on a BLOCK rule, we block the charge. 
 
 
