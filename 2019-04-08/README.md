@@ -61,3 +61,10 @@ ___
 **Output:** `False`
 
 The first rule does not match, so we move on to the next rule. This is a compound rule that does match because the card country (US) is not CA, and the amount (150) is over the limit of 100. Since we matched on a BLOCK rule, we block the charge.
+
+
+## Solutions
+
+As usual, [sample solutions][csip-uga/archive] are posted on GitHub.
+
+[csip-uga/archive]: https://github.com/csip-uga/archive
