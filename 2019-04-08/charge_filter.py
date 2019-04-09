@@ -18,13 +18,13 @@ Essentially, the charge starts with the prefix "CHARGE:" followed by four
 key-value pairs separated by ampersands. Each key-value pair is written with an
 equals sign as the separator. There are four possible keys, and every charge
 will contain each key exactly once. The values are strings of alphanumeric
-characters or the underscore. The amount value is interpreted as an integer and
+characters or underscores. The "amount" value is interpreted as an integer and
 the rest are interpreted as strings.
 
 The charges are simple enough to parse. We can strip off the prefix, split on
 the ampersand to get key-value strings, then split each key-value string on the
 equals to get key-value pairs. The key-value pairs can then be passed to the
-dictionary constructor. This logic is implemented on the `Charge` class.
+dict constructor. This logic is implemented on the `Charge` class.
 
 The rule language is more complicated. The instructions provide a few
 limitations that we could rely on, like there only being one "AND" or "OR", but
@@ -77,14 +77,7 @@ class RuleSet:
         '''
         for rule in rules:
             assert isinstance(rule, Rule)
-
-        self.allow = []
-        self.block = []
-        for rule in rules:
-            if rule.type == 'allow':
-                self.allow.append(rule)
-            else:
-                self.block.append(rule)
+        self.rules = tuple(rules)
 
     def check_charge(self, charge):
         '''Returns True if the charge should be allowed.
@@ -93,14 +86,15 @@ class RuleSet:
             charge (Charge):
                 A dictionary of properties of the charge.
         '''
-        for rule in self.allow:
+        # Apply the first matching rule.
+        for rule in self.rules:
             if rule.match(charge):
-                return True
+                if rule.type == 'allow':
+                    return True
+                else:
+                    return False
 
-        for rule in self.block:
-            if rule.match(charge):
-                return False
-
+        # If no rules match, the default is to accept the charge.
         return True
 
     @classmethod
@@ -163,11 +157,8 @@ class Rule:
             Rule:
                 The parsed rule.
         '''
-        source = source.strip()
-
         if source.startswith('ALLOW:'):
             type = 'allow'
-
         else:
             assert source.startswith('BLOCK:')
             type = 'block'
@@ -190,7 +181,6 @@ class OrExpr:
         '''
         for expr in exprs:
             assert isinstance(expr, AndExpr)
-
         self.exprs = tuple(exprs)
 
     def match(self, charge):
@@ -300,9 +290,12 @@ class CompareExpr:
         assert property in ("amount", "card_country", "currency", "ip_country")
         assert relationship in ("==", "!=", "<", "<=", ">", ">=")
 
-        # "amount" properties are compared as integers, not strings.
+        # The "amount" property is compared as an integer,
+        # everything else is compared as a string.
         if property == "amount":
             value = int(value)
+        else:
+            value = str(value)
 
         self.property = property
         self.value = value
@@ -317,9 +310,6 @@ class CompareExpr:
             charge (Charge):
                 A dictionary of properties of the charge.
         '''
-        if self.property not in charge:
-            return False
-
         if self.relationship == "==":
             return charge[self.property] == self.value
         elif self.relationship == "!=":
@@ -366,7 +356,7 @@ class CompareExpr:
             (property, value) = source.split('>')
             relationship = '>'
         else:
-            assert False, 'unknown comparison'
+            assert False, 'expected a comparison operator'
 
         property = property.strip()
         value = value.strip()
@@ -376,14 +366,7 @@ class CompareExpr:
 class Charge(dict):
     @classmethod
     def parse(cls, source):
-        '''Parse a CHARGE.
-
-        The source is parsed from a string of the form
-
-            "CHARGE: <KEY_VALUE_PAIRS>"
-
-        where "<KEY_VALUE_PAIRS>" is a string of pairs "<PROPERTY>=<VALUE>"
-        separated by "&".
+        '''Parse a charge.
         '''
         assert source.startswith('CHARGE:')
         source = source[7:]
@@ -392,7 +375,8 @@ class Charge(dict):
         key_values = (kv.split("=") for kv in properties)
         charge = cls(key_values)
 
-        # "amount" properties are compared as integers, not strings.
+        # The "amount" property is compared as an integer,
+        # everything else is compared as a string.
         if 'amount' in charge:
             charge['amount'] = int(charge['amount'])
 
