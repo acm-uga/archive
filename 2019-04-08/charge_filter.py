@@ -1,13 +1,82 @@
+'''A program for checking charges against a ruleset.
+
+See the CSIP website for details of the problem:
+http://csip.uga.edu/problems/2019-04-08/README
+
+There are two parsing problems in this program: parsing the charge and parsing
+the ruleset. Below, we describe the two languages in `Augmented Backus–Naur
+form (ABNF) <https://en.wikipedia.org/wiki/Augmented_Backus-Naur_form>`_ .
+
+The charge language is simple::
+
+    charge     =  "CHARGE:" key-value "&" key-value "&" key-value "&" key-value
+    key-value  =  key "=" value
+    key        =  "amount" / "card_country" / "currency" / "ip_country"
+    value      =  1*(ALPHA / DIGIT / "_")
+
+Essentially, the charge starts with the prefix "CHARGE:" followed by four
+key-value pairs separated by ampersands. Each key-value pair is written with an
+equals sign as the separator. There are four possible keys, and every charge
+will contain each key exactly once. The values are strings of alphanumeric
+characters or the underscore. The amount value is interpreted as an integer and
+the rest are interpreted as strings.
+
+The charges are simple enough to parse. We can strip off the prefix, split on
+the ampersand to get key-value strings, then split each key-value string on the
+equals to get key-value pairs. The key-value pairs can then be passed to the
+dictionary constructor. This logic is implemented on the `Charge` class.
+
+The rule language is more complicated. The instructions provide a few
+limitations that we could rely on, like there only being one "AND" or "OR", but
+it's actually easier to write out a grammar for the language that is general
+enough to handle more complex compounds. The grammar looks like this::
+
+    rule          =  ("ALLOW:" / "BLOCK:") or-expr
+    or-expr       =  and-expr *("OR" and-expr)
+    and-expr      =  compare-expr *("AND" compare-expr)
+    compare-expr  =  key ("==" / "!=" / "<" / "<=" / ">" / ">=") value
+    key           =  "amount" / "card_country" / "currency" / "ip_country"
+    value         =  1*(ALPHA / DIGIT / "_")
+
+Essentially, a rule starts with a prefix of either "ALLOW:" or "BLOCK:" followed
+by an OR-expression. An OR-expression is one or more AND-expressions separated
+by "OR". An AND-expression is one or more comparison-expressions separated by
+"AND". And a comparison-expression is a key-value pair separated by a comparison
+operator. The keys and values are defined just as they are in the charge
+language.
+
+We implement this language with a simple recursive-descent parser. We have
+classes for rules, OR-expressions, AND-expressions, and comparison-expressions.
+Each of these has a ``parse`` method to construct an instance of the class from
+a string. The parse method for rules calls the parse method for OR-expressions,
+which in turn calls the parse method for AND-expressions, and finally that calls
+the parse method for comparison-expressions. This recursive-ish nature is where
+we get the term recursive-descent parser. Instances of these classes form a tree
+that mirrors the structure of the grammar. This is called an abstract syntax
+tree.
+
+Each of these classes also have a ``match`` method which checks if an
+expression applies to a charge. Just like the ``parse`` methods, the ``match``
+method at each layer of the tree calls into the ``match`` method of the lower
+level of the tree. This technique is called an abstract syntax tree interpreter.
+
+To combine multiple rules, we have a top-level class for rulesets. The ruleset
+class also has a ``parse`` method, but it takes in a list of strings, one for
+each rule. Instead of a ``match`` method, the rulset has a ``check_charge``
+method which returns true if the charge should be allowed and false if it should
+be blocked.
+'''
+
 class RuleSet:
     def __init__(self, rules):
-        '''Construct a new rule-set.
+        '''Construct a new ruleset.
 
         Arguments:
-            rules (TopRule):
-                The list of top-level rules defining the rule set.
+            rules (Rule):
+                The list of top-level rules defining the ruleset.
         '''
         for rule in rules:
-            assert isinstance(rule, TopRule)
+            assert isinstance(rule, Rule)
 
         self.allow = []
         self.block = []
@@ -17,7 +86,7 @@ class RuleSet:
             else:
                 self.block.append(rule)
 
-    def does_allow(self, charge):
+    def check_charge(self, charge):
         '''Returns True if the charge should be allowed.
 
         Arguments:
@@ -36,7 +105,7 @@ class RuleSet:
 
     @classmethod
     def parse(cls, sources):
-        '''Parse a rule-set from a list of top-level rules.
+        '''Parse a ruleset from a list of top-level rules.
 
         Arguments:
             source (Sequence[str]):
@@ -44,34 +113,34 @@ class RuleSet:
 
         Returns:
             RuleSet:
-                The parsed rule-set.
+                The parsed ruleset.
         '''
-        rules = [TopRule.parse(source) for source in sources]
+        rules = [Rule.parse(source) for source in sources]
         return cls(rules)
 
 
-class TopRule:
+class Rule:
     def __init__(self, type, body):
-        '''Construct a new top-level rule.
+        '''Construct a new rule.
 
-        This rule simply delegates to an underlying OR rule, but contains
-        an additional `type` property used by rule-sets.
+        This rule simply delegates to an underlying OR-expression, but contains
+        an additional `type` property used by rulesets.
 
         Arguments:
             type (str):
                 Either ``"allow"`` or ``"block"``.
-            body (OrRule):
-                An ``OrRule`` for matching charges.
+            body (OrExpr):
+                An ``OrExpr`` for matching charges.
         '''
         assert type == "allow" or type == "block"
-        assert isinstance(body, OrRule)
+        assert isinstance(body, OrExpr)
         self.type = type
         self.body = body
 
     def match(self, charge):
         '''Match a charge against this rule.
 
-        This returns True if the body rule matches the charge.
+        This returns True if the body expression matches the charge.
 
         Arguments:
             charge (Charge):
@@ -81,17 +150,17 @@ class TopRule:
 
     @classmethod
     def parse(cls, source):
-        '''Parse a top-level rule.
+        '''Parse a rule.
 
         The source must start with either "ALLOW:" or "BLOCK:" and the
-        rest of the source is parsed as an AND rule.
+        rest of the source is parsed as an OR-expression.
 
         Arguments:
             source (str):
                 The source code to parse.
 
         Returns:
-            TopRule:
+            Rule:
                 The parsed rule.
         '''
         source = source.strip()
@@ -103,127 +172,126 @@ class TopRule:
             assert source.startswith('BLOCK:')
             type = 'block'
 
-        body = OrRule.parse(source[6:])
+        body = OrExpr.parse(source[6:])
         return cls(type, body)
 
 
-class OrRule:
-    def __init__(self, rules):
-        '''Construct a new OR rule.
+class OrExpr:
+    def __init__(self, exprs):
+        '''Construct a new OR-expression.
 
-        This rule matches a charge if any sub-rules match the charge.
+        This expression matches a charge if any sub-expression matches the
+        charge.
 
         Arguments:
-            rules (Sequence[AndRule]):
-                A list of rules, all of which must match a charge for this
-                rule to match a charge.
+            exprs (Sequence[AndExpr]):
+                A list of AND-expressions, one of which must match a charge for
+                this expression to match a charge.
         '''
-        for rule in rules:
-            assert isinstance(rule, AndRule)
+        for expr in exprs:
+            assert isinstance(expr, AndExpr)
 
-        self.rules = tuple(rules)
+        self.exprs = tuple(exprs)
 
     def match(self, charge):
-        '''Match a charge against this rule.
+        '''Match a charge against this expr.
 
-        This returns True if any of the sub-rules match the charge.
+        This returns True if any of the sub-expressions match the charge.
 
         Arguments:
             charge (Charge):
                 A dictionary of properties of the charge.
         '''
-        for rule in self.rules:
-            if rule.match(charge):
+        for expr in self.exprs:
+            if expr.match(charge):
                 return True
         return False
 
     @classmethod
     def parse(cls, source):
-        '''Parse an AND rule.
+        '''Parse an OR-expression.
 
-        The source is parsed as zero or more OR rules separated by "OR".
+        The source is parsed as zero or more AND-expressions separated by "OR".
 
         Arguments:
             source (str):
                 The source code to parse.
 
         Returns:
-            AndRule:
-                The parsed rule.
+            OrExpr:
+                The parsed expression.
         '''
-        source = source.strip()
-        rule_sources = source.split('OR')
-        rules = [AndRule.parse(r) for r in rule_sources]
-        return cls(rules)
+        exprs = [AndExpr.parse(r) for r in source.split('OR')]
+        return cls(exprs)
 
 
-class AndRule:
-    def __init__(self, rules):
-        '''Construct a new AND rule.
+class AndExpr:
+    def __init__(self, exprs):
+        '''Construct a new AND-expression.
 
-        This rule matches a charge if all sub-rules match the charge.
+        This expression matches a charge if all sub-expressions match the
+        charge.
 
         Arguments:
-            rules (Sequence[CompareRule]):
-                A list of rules, all of which must match a charge for this
-                rule to match a charge.
+            exprs (Sequence[CompareExpr]):
+                A list of comparison-expressions, all of which must match a
+                charge for this expression to match a charge.
         '''
-        for rule in rules:
-            assert isinstance(rule, CompareRule)
+        for expr in exprs:
+            assert isinstance(expr, CompareExpr)
 
-        self.rules = tuple(rules)
+        self.exprs = tuple(exprs)
 
     def match(self, charge):
-        '''Match a charge against this rule.
+        '''Match a charge against this expression.
 
-        This returns True if all of the sub-rules match the charge.
+        This returns True if all of the sub-expressions match the charge.
 
         Arguments:
             charge (Charge):
                 A dictionary of properties of the charge.
         '''
-        for rule in self.rules:
-            if not rule.match(charge):
+        for expr in self.exprs:
+            if not expr.match(charge):
                 return False
         return True
 
     @classmethod
     def parse(cls, source):
-        '''Parse an OR rule.
+        '''Parse an AND-expression.
 
-        The source is parsed as zero or more COMPARE rules separated by "AND".
+        The source is parsed as zero or more comparison-expressions separated
+        by "AND".
 
         Arguments:
             source (str):
                 The source code to parse.
 
         Returns:
-            OrRule:
-                The parsed rule.
+            AndExpr:
+                The parsed expression.
         '''
-        source = source.strip()
-        rule_sources = source.split('AND')
-        rules = [CompareRule.parse(r) for r in rule_sources]
-        return cls(rules)
+        exprs = [CompareExpr.parse(r) for r in source.split('AND')]
+        return cls(exprs)
 
 
-class CompareRule:
+class CompareExpr:
     def __init__(self, property, value, relationship):
-        '''Construct a new COMPARE rule.
+        '''Construct a new comparison-expression.
 
-        This rule matches a charge if the charge has the property associated
-        with this rule, and the value of that property in the charge has the
-        corresponding relationship to the value of this node.
+        This expression matches a charge if the charge the value of that
+        property in the charge has the corresponding relationship to the
+        value of this expression.
 
-        That is, if this rule has the property "amount", the value "1000", and
-        the relationship ">=", then this rule matches all charges that contain
-        the property "amount" with a value greater than or equal to 1000.
+        That is, if this expression has the property "amount", the value 1000,
+        and the relationship ">=", then this expression matches all charges
+        where the amount is greater than or equal to 1000.
 
         Arguments:
             property (str):
                 The property to match against. One of "amount", "card_country",
                 "currency", or "ip_country".
-            value (any):
+            value (int or str):
                 The value used in the comparison.
             relationship (str):
                 The relationship of the comparison. One of "==", "!=", "<",
@@ -241,9 +309,9 @@ class CompareRule:
         self.relationship = relationship
 
     def match(self, charge):
-        '''Match a charge against this rule.
+        '''Match a charge against this expression.
 
-        This compares a property of the charge against this rule's value.
+        This compares a property of the charge against this expression's value.
 
         Arguments:
             charge (Charge):
@@ -269,23 +337,15 @@ class CompareRule:
 
     @classmethod
     def parse(cls, source):
-        '''Parse a COMPARE rule.
-
-        The source is parsed from a string of the form:
-
-            "<PROPERTY> <RELATIONSHIP> <VALUE>"
-
-        where "<PROPERTY>" is one of "amount", "card_country", "currency", or
-        "ip_country"; "<RELATIONSHIP>" is one of "==", "!=", "<", "<=", ">",
-        or ">="; and "VALUE" is the value corresponding to the property.
+        '''Parse a comparison-expression.
 
         Arguments:
             source (str):
                 The source code to parse.
 
         Returns:
-            CompareRule:
-                The parsed rule.
+            CompareExpr:
+                The parsed expression.
         '''
         if '==' in source:
             (property, value) = source.split('==')
@@ -340,7 +400,7 @@ class Charge(dict):
 
 
 def main(sources):
-    '''Evaluate a charge against a rule-set.
+    '''Evaluate a charge against a ruleset.
 
     Arguments:
         sources (Sequence[str]):
@@ -350,7 +410,7 @@ def main(sources):
     (charge_source, *rule_sources) = sources
     charge = Charge.parse(charge_source)
     ruleset = RuleSet.parse(rule_sources)
-    return ruleset.does_allow(charge)
+    return ruleset.check_charge(charge)
 
 
 if __name__ == '__main__':
