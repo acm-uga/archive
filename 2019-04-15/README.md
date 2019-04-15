@@ -31,14 +31,14 @@ A prime number is an integer that is greater than 1 and has only two factors: 1 
 
 Every number has factors of 1 and itself. The numbers 1 and 21 are factors of 21. The numbers 1 and 12 are factors of 12. If no other factors exist for that number, then that number is **prime**.
 
-Given a positive integer `n` less than `2^16` (65,536), find all prime numbers less than `n`.
+Given a positive integer `n` less than `2^16` (65,536), find all prime numbers less than or equal to `n`.
 
 ### Examples
 
 | Input  | Output                                                    |
 |--------|-----------------------------------------------------------|
-|      1 | 2                                                         |
-|      5 | 2, 3, 5, 7, 11                                            |
+|      1 | 1, 2                                                      |
+|      5 | 1, 2, 3, 5                                                |
 |     12 | 1, 2, 3, 5, 7, 11                                         |
 |     50 | 1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47 |
 
