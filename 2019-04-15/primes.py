@@ -32,7 +32,7 @@ def primes(n):
         int:
             A prime number less than ``n``.
     '''
-    if not is_int(n):
+    if n % 1 != 0:
         raise ValueError('input must be an integer')
     if n < 0:
         raise ValueError('input must not be negative')
@@ -43,7 +43,7 @@ def primes(n):
     prev_primes = []  # All non-one primes seen so far.
     for i in range(2, n+1):
         for p in prev_primes:
-            if is_int(i / p):
+            if i % p == 0:
                 break
         else:
             prev_primes.append(i)
