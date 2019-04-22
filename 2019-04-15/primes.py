@@ -1,16 +1,3 @@
-def is_int(n):
-    '''Returns true if `n` is an integer.
-
-    Arguments:
-        n (float or int):
-            The number
-
-    Returns:
-        bool:
-            True when ``n`` is an integer.
-    '''
-    return n == int(n)
-
 def primes(n):
     '''Yields all primes less than or equal to ``n``.
 
