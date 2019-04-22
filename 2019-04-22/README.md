@@ -1,5 +1,5 @@
 ---
-title: "Shuffle a Deck and do a BST check"
+title: "Shuffle a Deck and Do a BST Check"
 date: 2019-04-22
 ---
 
