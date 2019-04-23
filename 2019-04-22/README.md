@@ -28,7 +28,7 @@ A binary search tree (BST) is a binary tree such that:
 
 Given a binary tree of numbers, determine if it is a valid binary search tree.
 
-Your input is given as an **s-expression**, a way of describing trees as lists. A binary s-expression is either a null value or a list of three values. A null value represents an empty tree. A list of three values represents a binary tree such that the first element is the root value and the second and third elements are s-expressions describing the left and right subtrees respectively.
+Your input is given as an **s-expression**, a way of describing trees as lists. In an s-expression, the empty tree is represented by a null value. Otherwise, the s-expression is a triple `[val, left, right]` where `val` is the value of the root node and `left` and `right` are s-expressions describing the left and right subtrees.
 
 ### S-Expressions
 
