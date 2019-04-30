@@ -16,12 +16,25 @@ def phone_strings(digits):
         string:
             A string that the phone number could represent.
     '''
-    if len(digits) == 0:
+    # We implement this algorithm recursivly. First, we split the string into
+    # the first digit and the remaining digits. Then we find the set of letters
+    # that can be represented by the first digit. We make a recursive call on
+    # the remaining digits and prepend each letter for this digit onto the
+    # strings returned by the recursive call.
+
+    # If the input is an empty string, our base case returns the empty string.
+    if digits == '':
         yield ''
         return
 
-    (first, *rest) = digits
+    # This is slice notation in Python. `first` is a string containing the
+    # first character of `digits` (Python has no char type). `rest` is the
+    # substring of `digits` starting at index 1 and extending to the end.
+    first = digits[0]
+    rest = digits[1:]
 
+    # Depending on the first digit, we need to get the set of letters it can
+    # represent. For best performance, we do this before entering the loop.
     if first == '2':
         lhs_choices = ('a', 'b', 'c')
     elif first == '3':
@@ -43,6 +56,11 @@ def phone_strings(digits):
     else:
         raise ValueError(f'invalid digit: {first}')
 
+    # The recursive call is expensive. It has an exponential time complexity
+    # with respect to the number of characters in the input. Therefore we
+    # only call it once. If the order of the loops were swapped, we would
+    # multiply our time complexity by ~3 (the average size of `lhs_choices`).
+    # When nesting loops, ALWAYS put the most expensive loop on the outside.
     for rhs in phone_strings(rest):
         for lhs in lhs_choices:
             yield lhs + rhs
