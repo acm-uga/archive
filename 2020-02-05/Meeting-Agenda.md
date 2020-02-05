@@ -9,6 +9,13 @@ file -- look if you want, but it's to your benefit to try the problems before se
 Feel free to hand a copy of your resume or LinkedIn url to any current officer, and they will have it back to you with 
 critique by the next meeting!
 
+.
+
+.
+
+.
+
+.
 
 ## P1: Beginner
 
