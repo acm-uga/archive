@@ -1,8 +1,10 @@
 # Welcome to CSIP!
 ### Feburary 5th, 2020
+#### URL: https://tinyurl.com/uqzmwyd
 
 Welcome! We will start with three open-ended coding questions you might be asked over the phone, 
-and then move into hard-code questions at various difficulty levels.
+and then move into hard-code questions at various difficulty levels. Solutions to these questions are at the end of the
+file -- look if you want, but it's to your benefit to try the problems before seeing the answers.
 
 Feel free to hand a copy of your resume or LinkedIn url to any current officer, and they will have it back to you with 
 critique by the next meeting!
