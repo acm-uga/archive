@@ -1,7 +1,5 @@
----
-title: "Welcome to CSIP!"
-date: 2020-02-05
----
+# Welcome to CSIP!
+### Feburary 5th, 2020
 
 Welcome! We will start with three open-ended coding questions you might be asked over the phone, 
 and then move into hard-code questions at various difficulty levels.
@@ -14,9 +12,8 @@ critique by the next meeting!
 
 Anyone getting started in their CS career, give these problems a shot.
 
-- Write a function that gives the nth fibonacci.
+- Write a function that gives the nth fibonacci. Do it both recursively and iteratively.
 
-- BONUS: implement it iteratively
 
 
 ## P2: Underclassperson
@@ -84,3 +81,5 @@ Input:
  4
  6
  ```
+
+# Solutions
