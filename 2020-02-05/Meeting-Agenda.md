@@ -83,3 +83,30 @@ Input:
  ```
 
 # Solutions
+
+## P1
+ - Recursive Solution
+ ```
+ public static int FibRecurse(int n) {
+        if(n <= 1) { return n; }
+        return FibRecurse(n-1) + FibRecurse(n-2);
+    }
+ ```
+ 
+  - Iterative
+ ```
+ public static int FibIter (int n) {
+        int firstNum = 1;
+        int secondNum;
+        int fibOfNth = 1;
+
+        if(n <= 1) { return n; }
+
+        for(int i = 2; i < n; i++) {
+            secondNum = fibOfNth;
+            fibOfNth += firstNum;
+            firstNum = secondNum;
+        }
+        return fibOfNth;
+    }
+ ```
