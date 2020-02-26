@@ -128,3 +128,28 @@ for(int i = 0; i < givenArray.length; i++) {
  }
 }
 ```
+
+## P3
+
+Java Solution
+```
+boolean haspathSum(Node node, int sum)  
+    { 
+        if (node == null) 
+            return (sum == 0); 
+        else 
+        { 
+            boolean ans = false; 
+   
+            /* otherwise check both subtrees */
+            int subsum = sum - node.data; 
+            if (subsum == 0 && node.left == null && node.right == null) 
+                return true; 
+            if (node.left != null) 
+                ans = ans || haspathSum(node.left, subsum); 
+            if (node.right != null) 
+                ans = ans || haspathSum(node.right, subsum); 
+            return ans; 
+        } 
+    }
+```
