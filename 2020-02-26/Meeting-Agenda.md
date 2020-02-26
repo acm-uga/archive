@@ -1,7 +1,7 @@
 # Welcome to CSIP!
 ### Feburary 26th, 2020
-#### This Page URL: 
-#### Attendance URL (In email as well):
+#### This Page URL: https://tinyurl.com/rvvbcp5
+#### Attendance URL (In email as well): https://tinyurl.com/ttlytr6
 
 Welcome! We will start with 2 logic questions often asked during 30 minute in person screens, 
 and then move into hard-code questions at various difficulty levels. Solutions to these questions are at the end of the
