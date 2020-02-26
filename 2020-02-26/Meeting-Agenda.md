@@ -19,6 +19,25 @@ critique by the next meeting!
 
 .
 
+## Screen 1
+ - You have a scale, and 8 pool balls. One of them weighs more than the others. What is the least number of weighs you can use to find which ball that is?
+ 
+ ## Screen 2
+  - You have 3 baskets. Each baskets contains either:
+    B1: Oranges
+    B2: Apples
+    B3: Both
+ However, the labels are incorrect, and you cannot see inside. You may withdraw a SINGLE fruit from a basket.
+ Then you must correctly identify which basket is which.
+
+.
+
+.
+
+.
+
+.
+
 ## P1
 
 This problem is the easiest out of the set.
@@ -68,7 +87,9 @@ This problem was the hardest, and I did not fully solve it during the interview 
 ```
 Example:
 Input : 23
+```
 ![Image of Yaktocat](https://media.geeksforgeeks.org/wp-content/cdn-uploads/sum_property_tree1.gif)
+```
 Output : True
 ```
  
