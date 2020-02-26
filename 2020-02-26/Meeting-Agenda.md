@@ -97,4 +97,19 @@ Output : True
 # Solutions
 
 ## P1
- - 
+
+Java Solution
+```
+int oddHouses = 0;
+int evenHouses = 0;
+for(int i = 0; i < givenArray.length; i++) {
+ evenHouses += givenArray[i]; // Remember that 0 is even
+ i++;
+ oddHouses += givenArray[i];
+}
+System.out.print((evenHouses > oddHouses ? evenHouses : oddHouses));
+```
+
+## P2
+
+Java Solution
