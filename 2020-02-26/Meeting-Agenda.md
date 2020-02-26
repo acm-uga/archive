@@ -113,3 +113,18 @@ System.out.print((evenHouses > oddHouses ? evenHouses : oddHouses));
 ## P2
 
 Java Solution
+```
+int [] duplicates = new Int[20,000];
+int temp;
+// Record duplicates
+for(int i = 0; i < givenArray.length; i++) {
+ temp = givenArray[i];
+ if(temp < 0) {
+  temp = temp*-1 + 10,000
+ }
+ duplicates[temp] += 1;
+ if(duplicates[temp] == 2) {
+  System.out.print(givenArray[i])
+ }
+}
+```
