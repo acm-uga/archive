@@ -15,7 +15,3 @@ print("Hello, world!")
 ````
 
 Feel free to hand a copy of your resume or LinkedIn url to any current officer, and we'll get it back to you with critique!
-
-### Problem 1:
-
-### Problem 2:
