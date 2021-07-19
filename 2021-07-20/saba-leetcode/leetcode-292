@@ -1,0 +1,13 @@
+class Solution {
+public:
+    bool canWinNim(int n) {
+        // can take 1-3 stones
+        //under 3 win 
+        // 4 - lose
+        if (n % 4 == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+};
